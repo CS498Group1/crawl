@@ -231,13 +231,16 @@ static void _clear_constriction_data()
 
 static void _trigger_opportunity_attacks(coord_def new_pos)
 {
-    if (you.attribute[ATTR_SERPENTS_LASH])
-        return; // moving at the speed of sound!
+    if (you.attribute[ATTR_SERPENTS_LASH]          // too fast!
+        || wu_jian_move_triggers_attacks(new_pos)) // too cool!
+    {
+        return;
+    }
 
     const coord_def orig_pos = you.pos();
     for (adjacent_iterator ai(orig_pos); ai; ++ai)
     {
-        if (!adjacent(*ai, new_pos))
+        if (adjacent(*ai, new_pos))
             continue;
         monster* mon = monster_at(*ai);
         // No, there is no logic to this ordering (pf):

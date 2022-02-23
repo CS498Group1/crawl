@@ -231,15 +231,19 @@ static void _clear_constriction_data()
 
 static void _trigger_opportunity_attacks(coord_def new_pos)
 {
+    if (you.attribute[ATTR_SERPENTS_LASH])
+        return; // moving at the speed of sound!
+
     const coord_def orig_pos = you.pos();
     for (adjacent_iterator ai(orig_pos); ai; ++ai)
     {
+        if (!adjacent(*ai, new_pos))
+            continue;
         monster* mon = monster_at(*ai);
         // No, there is no logic to this ordering (pf):
         if (!mon
             || mon->wont_attack()
             || !mons_has_attacks(*mon)
-            || adjacent(new_pos, mon->pos())
             || mon->confused()
             || mon->incapacitated()
             || !mon->can_see(you)

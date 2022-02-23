@@ -231,7 +231,8 @@ static void _clear_constriction_data()
 
 static void _trigger_opportunity_attacks(coord_def new_pos)
 {
-    for (adjacent_iterator ai(you.pos()); ai; ++ai)
+    const coord_def orig_pos = you.pos();
+    for (adjacent_iterator ai(orig_pos); ai; ++ai)
     {
         monster* mon = monster_at(*ai);
         // No, there is no logic to this ordering (pf):
@@ -257,7 +258,10 @@ static void _trigger_opportunity_attacks(coord_def new_pos)
         mon_maybe_attack_you(*mon);
         // Refund up to 10 energy (1 turn) from the attack.
         // Thus, only slow attacking monsters use energy for these.
-        mon->speed_increment = min(mon->speed_increment + 10, old_energy);
+        // EXCEPTION: phantoms stay adjacent after a hit, so they need to use
+        // up energy, or you ping-pong everywhere and it looks ridiculous.
+        if (you.pos() == orig_pos)
+            mon->speed_increment = min(mon->speed_increment + 10, old_energy);
 
         if (you.pending_revival)
             return;
@@ -748,9 +752,9 @@ static spret _rampage_forward(coord_def move)
     }
 
     // First, apply any necessary pre-move effects:
-    _apply_pre_move_effects(beam.target);
-    if (you.pending_revival) // died to opportunity attack
-        return spret::success;
+    remove_water_hold();
+    _clear_constriction_data();
+    // (But not opportunity attacks - messy codewise, and no design benefit.)
 
     // stepped = true, we're flavouring this as movement, not a blink.
     move_player_to_grid(beam.target, true);
@@ -1118,12 +1122,14 @@ void move_player_action(coord_def move)
         if (you.pos() != targ && targ_pass)
         {
             _apply_pre_move_effects(targ);
-            if (you.pending_revival) // died to opportunity attack
-                return;
-            move_player_to_grid(targ, true);
-            apply_barbs_damage();
-            remove_ice_movement();
-            apply_cloud_trail(old_pos);
+            // Check nothing weird happened during opportunity attacks.
+            if (!you.pending_revival && you.pos() == old_pos)
+            {
+                move_player_to_grid(targ, true);
+                apply_barbs_damage();
+                remove_ice_movement();
+                apply_cloud_trail(old_pos);
+            }
         }
 
         // Now it is safe to apply the swappee's location effects and add

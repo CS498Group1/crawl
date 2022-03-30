@@ -227,7 +227,7 @@ const Branch branches[NUM_BRANCHES] =
              RUNE_GLOORX_VLOQ }, branch_noise::normal, 8 },
 
     { BRANCH_ZIGGURAT, BRANCH_DEPTHS, 1, 4, 27, 27,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_ZIGGURAT, DNGN_EXIT_ZIGGURAT, DNGN_FLOOR,
       "Ziggurat", "a ziggurat", "Zig",
       "You land on top of a ziggurat so tall you cannot make out the ground.",
@@ -245,7 +245,7 @@ const Branch branches[NUM_BRANCHES] =
 #endif
 
     { BRANCH_BAZAAR, NUM_BRANCHES, -1, -1, 1, 18,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_BAZAAR, DNGN_EXIT_BAZAAR, NUM_FEATURES,
       "Bazaar", "a bazaar", "Bazaar",
       "You enter an inter-dimensional bazaar!",
@@ -253,7 +253,7 @@ const Branch branches[NUM_BRANCHES] =
       '1', {}, branch_noise::normal },
 
     { BRANCH_TROVE, NUM_BRANCHES, -1, -1, 1, 18,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_TROVE, DNGN_EXIT_TROVE, NUM_FEATURES,
       "Trove", "a treasure trove", "Trove",
       "You enter a treasure trove!",
@@ -261,7 +261,7 @@ const Branch branches[NUM_BRANCHES] =
       '2', {}, branch_noise::normal, DEFAULT_MON_DIE_SIZE },
 
     { BRANCH_SEWER, NUM_BRANCHES, -1, -1, 1, 4,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_SEWER, DNGN_EXIT_SEWER, NUM_FEATURES,
       "Sewer", "a sewer", "Sewer",
       "You enter a sewer!",
@@ -269,7 +269,7 @@ const Branch branches[NUM_BRANCHES] =
       '3', {}, branch_noise::normal, DEFAULT_MON_DIE_SIZE },
 
     { BRANCH_OSSUARY, NUM_BRANCHES, -1, -1, 1, 6,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_OSSUARY, DNGN_EXIT_OSSUARY, NUM_FEATURES,
       "Ossuary", "an ossuary", "Ossuary",
       "You enter an ossuary!",
@@ -277,7 +277,7 @@ const Branch branches[NUM_BRANCHES] =
       '4', {}, branch_noise::normal, DEFAULT_MON_DIE_SIZE },
 
     { BRANCH_BAILEY, NUM_BRANCHES, -1, -1, 1, 11,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_BAILEY, DNGN_EXIT_BAILEY, NUM_FEATURES,
       "Bailey", "a bailey", "Bailey",
       "You enter a bailey!",
@@ -286,7 +286,7 @@ const Branch branches[NUM_BRANCHES] =
 #if TAG_MAJOR_VERSION > 34
 
     { BRANCH_GAUNTLET, NUM_BRANCHES, -1, -1, 1, 15,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_GAUNTLET, DNGN_EXIT_GAUNTLET, DNGN_EXIT_THROUGH_ABYSS,
       "Gauntlet", "a Gauntlet", "Gauntlet",
       "You enter a gauntlet!",
@@ -295,7 +295,7 @@ const Branch branches[NUM_BRANCHES] =
 #endif
 
     { BRANCH_ICE_CAVE, NUM_BRANCHES, -1, -1, 1, 15,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_ICE_CAVE, DNGN_EXIT_ICE_CAVE, NUM_FEATURES,
       "Ice Cave", "an ice cave", "IceCv",
       "You enter an ice cave!",
@@ -308,7 +308,7 @@ const Branch branches[NUM_BRANCHES] =
 #endif
 
     { BRANCH_VOLCANO, NUM_BRANCHES, -1, -1, 1, 14,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_VOLCANO, DNGN_EXIT_VOLCANO, NUM_FEATURES,
       "Volcano", "a volcano", "Volcano",
       "You enter a volcano!",
@@ -321,7 +321,7 @@ const Branch branches[NUM_BRANCHES] =
 #endif
 
     { BRANCH_WIZLAB, NUM_BRANCHES, -1, -1, 1, 24,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_WIZLAB, DNGN_EXIT_WIZLAB, NUM_FEATURES,
       "Wizlab", "a wizard's laboratory", "WizLab",
       "You enter a wizard's laboratory!",
@@ -344,7 +344,7 @@ const Branch branches[NUM_BRANCHES] =
 #endif
 
     { BRANCH_DESOLATION, NUM_BRANCHES, -1, -1, 1, 20,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_DESOLATION, DNGN_EXIT_DESOLATION, NUM_FEATURES, // TODO
       "Desolation", "the Desolation of Salt", "Desolation",
       "You enter a great desolation of salt!",
@@ -358,7 +358,7 @@ const Branch branches[NUM_BRANCHES] =
 #if TAG_MAJOR_VERSION == 34
 
     { BRANCH_GAUNTLET, NUM_BRANCHES, -1, -1, 1, 15,
-      brflag::no_x_level_travel | brflag::no_items,
+      brflag::no_items,
       DNGN_ENTER_GAUNTLET, DNGN_EXIT_GAUNTLET, DNGN_EXIT_THROUGH_ABYSS,
       "Gauntlet", "a Gauntlet", "Gauntlet",
       "You enter a gauntlet!",
